@@ -85,7 +85,7 @@ func LinkAuth(w http.ResponseWriter, r *http.Request) {
 			}
 
 			if !groupExists {
-				base.Warn("Configuration warning: default_group '%s' does not exist or is disabled", base.Cfg.DefaultGroup)
+				base.Warn(fmt.Sprintf("Configuration warning: default_group '%s' does not exist or is disabled", base.Cfg.DefaultGroup))
 			}
 		}
 
