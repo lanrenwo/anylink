@@ -119,6 +119,8 @@ func CreateSession(w http.ResponseWriter, r *http.Request, authSession *AuthSess
 	sess := sessdata.NewSession("")
 	sess.Username = cr.Auth.Username
 	sess.Group = cr.GroupSelect
+	sess.AuthType = dbdata.GetGroupAuthType(cr.GroupSelect)
+
 	oriMac := cr.MacAddressList.MacAddress
 	sess.UniqueIdGlobal = cr.DeviceId.UniqueIdGlobal
 	sess.UserAgent = cr.UserAgent

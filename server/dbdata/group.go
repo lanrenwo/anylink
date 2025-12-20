@@ -383,3 +383,21 @@ func ValidateDomainName(domain string) bool {
 	RegExp := regexp.MustCompile(`^([a-zA-Z0-9][-a-zA-Z0-9]{0,62}\.)+[A-Za-z]{2,18}$`)
 	return RegExp.MatchString(domain)
 }
+
+// GetGroupAuthType 获取用户组的认证类型
+func GetGroupAuthType(groupName string) string {
+	group := &Group{}
+	if err := One("Name", groupName, group); err != nil {
+		return "local"
+	}
+
+	if len(group.Auth) == 0 {
+		return "local"
+	}
+
+	if authType, ok := group.Auth["type"].(string); ok {
+		return authType
+	}
+
+	return "local"
+}

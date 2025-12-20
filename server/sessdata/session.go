@@ -77,6 +77,7 @@ type Session struct {
 	UniqueMac       bool   // 客户端获取到真实设备mac
 	Username        string // 用户名
 	Group           string
+	AuthType        string // 认证类型: local, ldap, radius等
 	AuthStep        string
 	AuthPass        string
 	RemoteAddr      string
